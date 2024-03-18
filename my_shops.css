@@ -1,0 +1,71 @@
+/* Styles specific to the My Shops page */
+
+.page-title {
+  text-align: center;
+}
+
+.centered-container {
+  display: flex;
+  justify-content: center;
+}
+
+.bordered-area {
+  border: 2px solid #eac6a1;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+  width: 80%;
+  max-width: 800px;
+}
+
+.add-shop-button {
+  position: relative;
+  float: right;
+  margin-bottom: 10px;
+}
+
+.add-shop-button button {
+  background: #eac6a1;
+  color: #42260c;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.add-shop-button button:hover {
+  background: #cba077;
+}
+
+
+.shop-list {
+  margin-top: 60px;
+}
+
+.shop-list li {
+  display: flex; /* Ensure the list items are displayed as flex items */
+  justify-content: space-between; /* Distribute items evenly, pushing buttons to the right */
+  align-items: center; /* Align items vertically */
+}
+
+.shop-list li span {
+  flex-grow: 1; /* Allow the shop name to take up all available space */
+}
+
+.shop-list li button {
+  margin-left: 10px; /* Add some space between buttons */
+}
+
+.shop-list li button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-size: 1rem;
+}
+
+.shop-list li button i {
+  color: #eac6a1;
+}

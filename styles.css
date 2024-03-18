@@ -1,3 +1,5 @@
+/* Global styles */
+
 header {
   background-color: rgba(0, 0, 0, 0); /* Semi-transparent background color for header */
   color: #42260c;
@@ -82,9 +84,8 @@ header {
   margin-right: 10px;
 }
 
-/* Styles for main content area */
 main {
-  padding: 20px;
+  padding: 10px;
 }
 
 body {
@@ -93,31 +94,4 @@ body {
   background-image: url('images/duka-background.jpeg'); /* Path to your image */
   background-size: cover; /* Cover the entire area */
   background-position: center; /* Center the image */
-}
-
-#content {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Max 2 sections per row */
-  grid-gap: 20px;
-}
-
-.section {
-  background-color: #f7eecd;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Media query for smaller screens */
-@media (max-width: 768px) {
-  #content {
-    grid-template-columns: repeat(auto-fit, minmax(100%, 1fr)); /* 1 section per row */
-  }
-}
-
-/* Media query for wider screens */
-@media (min-width: 1024px) {
-  #content {
-    grid-template-columns: repeat(auto-fit, minmax(45%, 1fr)); /* Max 2 sections per row */
-  }
 }

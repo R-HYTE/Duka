@@ -1,0 +1,28 @@
+/* Styles specific to the dashboard page */
+
+#content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Max 2 sections per row */
+  grid-gap: 20px;
+}
+
+.section {
+  background-color: #f7eecd;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  #content {
+    grid-template-columns: repeat(auto-fit, minmax(100%, 1fr)); /* 1 section per row */
+  }
+}
+
+/* Media query for wider screens */
+@media (min-width: 1024px) {
+  #content {
+    grid-template-columns: repeat(auto-fit, minmax(45%, 1fr)); /* Max 2 sections per row */
+  }
+}

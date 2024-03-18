@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Shops Page</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="my_shops.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Font Awesome for icons -->
+</head>
+<body>
+  <header>
+    <div class="menu-icon" onclick="toggleMenu()">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+    <div class="shop-info">
+      <img src="images/shop-icon.png" alt="Shop Icon">
+      <span>Shop Name</span>
+    </div>
+    <nav class="navigation-menu">
+      <div class="logo-container">
+        <img src="logo.png" alt="Logo">
+      </div>
+      <ul>
+        <li><a href="#"><i class="fas fa-chart-line"></i>Dashboard</a></li>
+        <li><a href="my_shops.html"><i class="fas fa-store"></i>My Shops</a></li> <!-- Link to the new page -->
+        <li><a href="#"><i class="fas fa-box"></i>Stocks</a></li>
+        <li><a href="#"><i class="fas fa-handshake"></i>Sell</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <!-- Main content area -->
+    <section id="content">
+      <div class="page-title">
+        <h2>My Shops</h2>
+      </div>
+      <div class="centered-container">
+        <div class="bordered-area">
+          <!-- Add New Shop button -->
+          <div class="add-shop-button">
+            <button onclick="addNewShop()"><i class="fas fa-plus"></i> New Shop</button>
+          </div>
+
+          <!-- List of shops -->
+          <div class="shop-list">
+            <!-- Placeholder for the list of shops -->
+            <ul>
+              <li>
+                <span>Shop Name 1</span>
+                <button onclick="editShop()"><i class="fas fa-edit"></i></button>
+                <button onclick="deleteShop()"><i class="fas fa-trash-alt"></i></button>
+              </li>
+              <li>
+                <span>Shop Name 2</span>
+                <button onclick="editShop()"><i class="fas fa-edit"></i></button>
+                <button onclick="deleteShop()"><i class="fas fa-trash-alt"></i></button>
+              </li>
+              <!-- Add more shop items dynamically using JavaScript -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="app.js" defer></script>
+</body>
+</html>
