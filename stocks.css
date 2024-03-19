@@ -1,0 +1,101 @@
+/* Styles for the Stocks page */
+.stocks-section {
+  border: 2px solid #eac6a1;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 600px; /* Adjust the maximum width as needed */
+  margin: 0 auto; /* Center the section horizontally */
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px; /* Add margin to create space between the header and product list */
+}
+
+.section-header input[type="search"] {
+  width: 60%; /* Adjust the width of the search input as needed */
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.section-header button {
+  background: #eac6a1;
+  color: #42260c;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.section-header button:hover {
+  background: #cba077;
+}
+
+/* Form container styles */
+.form-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+  width: 300px;
+}
+
+/* Styles for the form content */
+.form-content {
+  position: relative;
+  border: 2px solid #eac6a1;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #fff;
+}
+
+/* Close button styles */
+#close-form-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #999;
+}
+
+/* Adjustments for the Product Name label */
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Adjustments for the input fields */
+input[type="text"] {
+  width: calc(100% - 20px); /* Adjust as needed */
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Add Product button styles */
+#add-product-button {
+  display: block;
+  width: 100%;
+  background-color: #eac6a1;
+  color: #42260c;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#add-product-button:hover {
+  background: #cba077;
+}

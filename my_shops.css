@@ -1,9 +1,5 @@
 /* Styles specific to the My Shops page */
 
-.page-title {
-  text-align: center;
-}
-
 .centered-container {
   display: flex;
   justify-content: center;

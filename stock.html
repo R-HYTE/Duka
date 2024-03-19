@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stocks Page</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="stocks.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Font Awesome for icons -->
+</head>
+<body>
+  <header>
+    <div class="menu-icon" onclick="toggleMenu()">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+    <div class="shop-info">
+      <img src="images/shop-icon.png" alt="Shop Icon">
+      <span>Shop Name</span>
+    </div>
+    <nav class="navigation-menu">
+      <div class="logo-container">
+        <img src="logo.png" alt="Logo">
+      </div>
+      <ul>
+        <li><a href="#"><i class="fas fa-chart-line"></i>Dashboard</a></li>
+        <li><a href="my_shops.html"><i class="fas fa-store"></i>My Shops</a></li> <!-- Link to the My Shops page -->
+        <li><a href="#"><i class="fas fa-box"></i>Stocks</a></li>
+        <li><a href="#"><i class="fas fa-handshake"></i>Sell</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="content">
+      <div class="page-title">
+        <h2>Products</h2>
+      </div>
+      <div class="centered-container">
+        <div class="stocks-section">
+          <div class="section-header">
+            <input type="search" placeholder="Search">
+            <button onclick="displayAddProductForm()"><i class="fas fa-plus"></i> Add Product</button>
+          </div>
+          <ul class="product-list">
+            <!-- List of all products goes here -->
+            <li>Product 1</li>
+            <li>Product 2</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Form for adding a new product -->
+  <div id="add-product-form-container" class="form-container hidden">
+    <div class="form-content">
+      <button id="close-form-button" onclick="closeAddProductForm()">×</button>
+      <form id="add-product-form">
+        <label for="product-name">Product Name:</label>
+        <input type="text" id="product-name" required>
+
+        <!-- Additional input fields for product details can be added here -->
+
+        <button id="add-product-button" type="submit">Add Product</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Additional content goes here -->
+
+  <script src="app.js" defer></script>
+</body>
+</html>

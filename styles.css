@@ -96,6 +96,10 @@ body {
   background-position: center; /* Center the image */
 }
 
+.page-title {
+  text-align: center;
+}
+
 /* Form container styles */
 .form-container {
   position: fixed;
