@@ -95,3 +95,77 @@ body {
   background-size: cover; /* Cover the entire area */
   background-position: center; /* Center the image */
 }
+
+/* Form container styles */
+.form-container {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999; /* Ensure the form is on top of other content */
+  width: 400px;
+}
+
+/* Styles for the form content */
+.form-content {
+  position: relative;
+  border: 2px solid #eac6a1;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #fff;
+}
+
+/* Close button styles */
+#close-form-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #999;
+}
+
+/* Adjustments for the Shop Name and Location labels */
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Adjustments for the input fields */
+input[type="text"] {
+  width: calc(100% - 20px); /* Adjust as needed */
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Create button styles */
+#create-button {
+  display: block;
+  width: 100%;
+  background-color: #eac6a1;
+  color: #42260c;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#create-button:hover {
+  background: #cba077;
+}
+
+/* Hide the form container initially */
+.hidden {
+  display: none;
+}
+
+/* Styles for blurred background when the form is displayed */
+.main-blurred {
+  filter: blur(15px);
+}
