@@ -1,0 +1,46 @@
+/* Styles specific to the Sell page */
+
+/* Centered container */
+.centered-container {
+  display: flex;
+  justify-content: center;
+}
+
+/* Bordered area */
+.bordered-area {
+  border: 2px solid #eac6a1;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+  width: 80%;
+  max-width: 800px;
+}
+
+/* Sell search input */
+.sell-search {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.sell-search input[type="text"] {
+  flex-grow: 1; /* Take up remaining space */
+  padding: 10px;
+  border: 2px solid #eac6a1;
+  border-radius: 5px;
+}
+
+/* Scan button */
+.sell-search button {
+  background-color: #eac6a1;
+  border: none;
+  border-radius: 5px;
+  margin-left: 10px; /* Add space between input field and button */
+  cursor: pointer;
+  padding: 6px 20px; /* Increase padding */
+  font-size: 1.5rem;
+}
+
+.sell-search button i {
+  color: #42260c;
+}
