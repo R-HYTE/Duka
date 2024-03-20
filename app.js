@@ -21,11 +21,15 @@ function handleShopFormSubmit(event) {
   var shopNameInput = document.getElementById('shop-name');
   var shopName = shopNameInput.value;
 
+  var locationInput = document.getElementById('location');
+  var location = locationInput.value;
+
   // Validate input fields if needed
 
   // Create a new shop object
   var newShop = {
     name: shopName,
+    location: location,
     // Add additional properties for location based on GPS if needed
   };
 
@@ -47,6 +51,7 @@ function addNewShopToList(newShop) {
   var listItem = document.createElement('li');
   listItem.innerHTML = `
     <span>${newShop.name}</span>
+    <span>${newShop.location}</span>
     <button onclick="editShop()"><i class="fas fa-edit"></i></button>
     <button onclick="deleteShop()"><i class="fas fa-trash-alt"></i></button>
   `;
@@ -55,11 +60,15 @@ function addNewShopToList(newShop) {
 
 // Event listener for the New Shop button
 var newShopButton = document.getElementById('new-shop-button');
-newShopButton.addEventListener('click', displayNewShopForm);
+if (newShopButton) {
+    newShopButton.addEventListener('click', displayNewShopForm);
+}
 
 // Event listener for shop form submission
 var addShopForm = document.getElementById('add-shop-form');
-addShopForm.addEventListener('submit', handleShopFormSubmit);
+if (addShopForm) {
+  addShopForm.addEventListener('submit', handleShopFormSubmit);
+}
 
 // Function to close the new shop form
 function closeNewShopForm() {
@@ -88,10 +97,18 @@ function handleAddProductFormSubmit(event) {
   var productNameInput = document.getElementById('product-name');
   var productName = productNameInput.value;
 
+
   // Validate input fields if needed
 
+  // Create a new product object
+  var newProduct = {
+    name: productName,
+    // Add additional properties for product
+  };
+
+
   // Add the new product to the list
-  addNewProductToList(productName);
+  addNewProductToList(newProduct);
 
   // Hide the form after submission
   var addProductFormContainer = document.getElementById('add-product-form-container');
@@ -103,10 +120,12 @@ function handleAddProductFormSubmit(event) {
 }
 
 // Function to add a new product to the list
-function addNewProductToList(productName) {
+function addNewProductToList(newProduct) {
   var productList = document.querySelector('.product-list');
   var listItem = document.createElement('li');
-  listItem.textContent = productName;
+  listItem.innerHTML = `
+    <span>${newProduct.name}</span>
+  `;
   productList.appendChild(listItem);
 }
 
