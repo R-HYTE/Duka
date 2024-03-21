@@ -142,3 +142,11 @@ function closeAddProductForm() {
   var mainContent = document.querySelector('main');
   mainContent.classList.remove('main-blurred');
 }
+
+// Function to toggle cart display and blurred effect
+function toggleCart() {
+  const cart = document.querySelector('.cart');
+  const mainContent = document.querySelector('main');
+  cart.classList.toggle('hidden');
+  mainContent.classList.toggle('main-blurred');
+}

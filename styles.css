@@ -48,6 +48,7 @@ header {
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   box-shadow: 0 0 10px rgba(27, 26, 26, 0.3);
+  z-index: 9999;
 }
 
 .logo-container {

@@ -8,12 +8,14 @@
 
 /* Bordered area */
 .bordered-area {
+  position: relative; /* Ensure positioning context for absolute positioning */
   border: 2px solid #eac6a1;
   padding: 20px;
   border-radius: 10px;
   margin-top: 20px;
   width: 80%;
   max-width: 800px;
+  margin: 0 auto;
 }
 
 /* Sell search input */
@@ -43,4 +45,101 @@
 
 .sell-search button i {
   color: #42260c;
+}
+
+/* Cart button */
+.cart-button {
+  position: absolute;
+  bottom: -10px;
+  right: -10px;
+  background-color: #eac6a1;
+  color: #42260c;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Cart container */
+.cart {
+  position: absolute;
+  top: 40%; /* Adjust as needed */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border: 2px solid #eac6a1;
+  border-radius: 10px;
+  padding: 10px;
+  width: 400px;
+  height: auto;
+  max-height: calc(100vh - 60px);;
+  overflow-y: auto;
+  z-index: 999;
+}
+
+.cart.hidden {
+  display: none;
+}
+
+/* Additional styles for cart summary */
+
+.cart-summary {
+  position: relative;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  width: 90%;
+}
+
+.close-cart {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.back-to-selling {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: blue;
+  margin-bottom: 20px;
+}
+
+.item-list {
+  /* Style for the list of items added to the cart */
+  margin-bottom: 100px;
+}
+
+.subtotal {
+  font-weight: bold;
+  margin-bottom: 10px;
+  border-top: 1px solid #ccc;
+}
+
+.checkout-button {
+  background-color: #eac6a1;
+  color: #42260c;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
+  cursor: pointer;
+}
+
+/* Hover effect on cart button */
+.cart-button:hover {
+  background-color: #cba077;
+}
+
+/* Hover effect on checkout button */
+.checkout-button:hover {
+  background-color: #cba077;
 }
