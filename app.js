@@ -82,6 +82,41 @@ function closeNewShopForm() {
   mainContent.classList.remove('main-blurred');
 }
 
+// Function to edit shop details
+function editShop(row) {
+  // Get the row containing the shop details
+  var shopRow = row.parentNode.parentNode;
+  
+  // Get the shop name and location from the row
+  var shopName = shopRow.cells[0].textContent;
+  var location = shopRow.cells[1].textContent;
+
+  // Prompt the user to edit the shop details
+  var editedShopName = prompt("Edit shop name:", shopName);
+  var editedLocation = prompt("Edit location:", location);
+
+  // Update the table with the edited details if the user provided new values
+  if (editedShopName && editedLocation) {
+    shopRow.cells[0].textContent = editedShopName;
+    shopRow.cells[1].textContent = editedLocation;
+  }
+}
+
+
+
+
+
+
+// Function to delete a shop entry
+function deleteShop(row) {
+  // Get the row containing the shop details
+  var shopRow = row.parentNode.parentNode;
+  
+  // Remove the row from the table
+  shopRow.parentNode.removeChild(shopRow);
+}
+
+
 // Function to display the add product form
 function displayAddProductForm() {
   var addProductFormContainer = document.getElementById('add-product-form-container');
