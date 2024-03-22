@@ -115,7 +115,7 @@ function handleAddProductFormSubmit(event) {
 
 
   // Add the new product to the list
-  addNewProductToList(newProduct);
+  addNewProductToTable(newProduct);
 
   // Hide the form after submission
   var addProductFormContainer = document.getElementById('add-product-form-container');
@@ -126,19 +126,20 @@ function handleAddProductFormSubmit(event) {
   mainContent.classList.remove('main-blurred');
 }
 
-// Function to add a new product to the list
-function addNewProductToList(newProduct) {
-  var productList = document.querySelector('.product-list');
-  var listItem = document.createElement('li');
-  listItem.innerHTML = `
-    <span>${newProduct.description}</span>
-    <span>${newProduct.quantity}</span>
-    <span>${newProduct.items}</span>
-    <span>${newProduct.pricePerItem}</span>
-    <span>${newProduct.datePurchase}</span>
+// Function to add a new product to the table
+function addNewProductToTable(newProduct) {
+  var productList = document.querySelector('.product-list tbody');
+  var newRow = document.createElement('tr');
+  newRow.innerHTML = `
+    <td>${newProduct.description}</td>
+    <td>${newProduct.quantity}</td>
+    <td>${newProduct.items}</td>
+    <td>${newProduct.pricePerItem}</td>
+    <td>${newProduct.datePurchase}</td>
   `;
-  productList.appendChild(listItem);
+  productList.appendChild(newRow);
 }
+
 
 // Event listener for the Add Product form submission
 var addProductForm = document.getElementById('add-product-form');
