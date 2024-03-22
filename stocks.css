@@ -36,6 +36,33 @@
   background: #cba077;
 }
 
+/* CSS for styling the product list table */
+.product-list {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.product-list th {
+  font-weight: bold;
+  font-size: 1.2em;
+  text-align: center;
+  padding: 10px;
+}
+
+.product-list td {
+  padding: 10px;
+  border-top: 1px solid #ccc;
+}
+
+.product-list tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.product-list tbody td {
+  text-align: center;
+}
+
 /* Form container styles */
 .form-container {
   position: fixed;
