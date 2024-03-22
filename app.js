@@ -33,8 +33,8 @@ function handleShopFormSubmit(event) {
     // Add additional properties for location based on GPS if needed
   };
 
-  // Add the new shop to the list
-  addNewShopToList(newShop);
+  // Add the new shop to the table
+  addNewShopToTable(newShop);
 
   // Hide the form after submission
   var newShopForm = document.getElementById('new-shop-form');
@@ -45,17 +45,19 @@ function handleShopFormSubmit(event) {
   mainContent.classList.remove('main-blurred');
 }
 
-// Function to add a new shop to the list
-function addNewShopToList(newShop) {
-  var shopList = document.querySelector('.shop-list ul');
-  var listItem = document.createElement('li');
-  listItem.innerHTML = `
-    <span>${newShop.name}</span>
-    <span>${newShop.location}</span>
-    <button onclick="editShop()"><i class="fas fa-edit"></i></button>
-    <button onclick="deleteShop()"><i class="fas fa-trash-alt"></i></button>
+// Function to add a new shop to the table
+function addNewShopToTable(newShop) {
+  var shopList = document.getElementById('shop-list');
+  var newRow = document.createElement('tr');
+  newRow.innerHTML = `
+    <td>${newShop.name}</td>
+    <td>${newShop.location}</td>
+    <td>
+      <button onclick="editShop(this)"><i class="fas fa-edit"></i></button>
+      <button onclick="deleteShop(this)"><i class="fas fa-trash-alt"></i></button>
+    </td>
   `;
-  shopList.appendChild(listItem);
+  shopList.appendChild(newRow);
 }
 
 // Event listener for the New Shop button
@@ -114,7 +116,7 @@ function handleAddProductFormSubmit(event) {
   };
 
 
-  // Add the new product to the list
+  // Add the new product to the table
   addNewProductToTable(newProduct);
 
   // Hide the form after submission

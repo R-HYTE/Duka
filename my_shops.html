@@ -38,29 +38,24 @@
         <h2>My Shops</h2>
       </div>
       <div class="centered-container">
-        <div class="bordered-area">
+        <div class="shop-section">
           <!-- Add New Shop button -->
-          <div class="add-shop-button">
+          <div class="section-header">
             <button id="new-shop-button"><i class="fas fa-plus"></i> New Shop</button>
           </div>
-
-          <!-- List of shops -->
-          <div class="shop-list">
             <!-- Placeholder for the list of shops -->
-            <ul id="shop-list">
-              <li>
-                <span>Shop Name 1</span>
-                <button onclick="editShop()"><i class="fas fa-edit"></i></button>
-                <button onclick="deleteShop()"><i class="fas fa-trash-alt"></i></button>
-              </li>
-              <li>
-                <span>Shop Name 2</span>
-                <button onclick="editShop()"><i class="fas fa-edit"></i></button>
-                <button onclick="deleteShop()"><i class="fas fa-trash-alt"></i></button>
-              </li>
-              <!-- Add more shop items dynamically using JavaScript -->
-            </ul>
-          </div>
+          <table class="shop-list">
+            <thead>
+              <tr>
+                <th>Shop Name</th>
+                <th>Location</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="shop-list">
+              <!-- Shop items will be dynamically added here -->
+            </tbody>
+          </table>
         </div>
       </div>
     </section>

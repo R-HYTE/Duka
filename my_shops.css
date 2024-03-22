@@ -1,26 +1,21 @@
 /* Styles specific to the My Shops page */
 
-.centered-container {
-  display: flex;
-  justify-content: center;
-}
-
-.bordered-area {
+.shop-section {
   border: 2px solid #eac6a1;
-  padding: 20px;
   border-radius: 10px;
-  margin-top: 20px;
-  width: 80%;
-  max-width: 800px;
+  padding: 20px;
+  width: 90%; /* Adjust the width as needed */
+  margin: 20px auto; /* Center the section horizontally */
+  max-width: 600px; /* Add max-width to prevent it from becoming too wide */
 }
 
-.add-shop-button {
-  position: relative;
-  float: right;
-  margin-bottom: 10px;
+.section-header {
+  display: flex;
+  justify-content: flex-end; /* Align button to the right */
+  margin-bottom: 20px;
 }
 
-.add-shop-button button {
+.section-header button {
   background: #eac6a1;
   color: #42260c;
   border: none;
@@ -31,37 +26,33 @@
   transition: background 0.3s ease;
 }
 
-.add-shop-button button:hover {
+.section-header button:hover {
   background: #cba077;
 }
 
-
+/* CSS for styling the shop list table */
 .shop-list {
-  margin-top: 60px;
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
 }
 
-.shop-list li {
-  display: flex; /* Ensure the list items are displayed as flex items */
-  justify-content: space-between; /* Distribute items evenly, pushing buttons to the right */
-  align-items: center; /* Align items vertically */
+.shop-list th, .shop-list td {
+  padding: 10px;
+  text-align: center;
+  border: none; /* Remove all borders from table cells */
 }
 
-.shop-list li span {
-  flex-grow: 1; /* Allow the shop name to take up all available space */
+.shop-list th {
+  font-weight: bold;
+  font-size: 1.2em;
+  border-bottom: 2px solid #f2f2f2;
 }
 
-.shop-list li button {
-  margin-left: 10px; /* Add some space between buttons */
+.shop-list tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
 }
 
-.shop-list li button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  font-size: 1rem;
-}
-
-.shop-list li button i {
-  color: #eac6a1;
+.shop-list tbody td {
+  text-align: center;
 }
