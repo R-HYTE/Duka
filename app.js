@@ -94,15 +94,22 @@ function displayAddProductForm() {
 function handleAddProductFormSubmit(event) {
   event.preventDefault(); // Prevent default form submission behavior
 
-  var productNameInput = document.getElementById('product-name');
-  var productName = productNameInput.value;
+  var description = document.getElementById('description').value;
+  var quantity = document.getElementById('quantity').value;
+  var items = document.getElementById('items').value;
+  var pricePerItem = document.getElementById('price-per-item').value;
+  var datePurchase = document.getElementById('date-purchase').value;
 
 
   // Validate input fields if needed
 
   // Create a new product object
   var newProduct = {
-    name: productName,
+    description: description,
+    quantity: quantity,
+    items: items,
+    pricePerItem: pricePerItem,
+    datePurchase: datePurchase
     // Add additional properties for product
   };
 
@@ -124,7 +131,11 @@ function addNewProductToList(newProduct) {
   var productList = document.querySelector('.product-list');
   var listItem = document.createElement('li');
   listItem.innerHTML = `
-    <span>${newProduct.name}</span>
+    <span>${newProduct.description}</span>
+    <span>${newProduct.quantity}</span>
+    <span>${newProduct.items}</span>
+    <span>${newProduct.pricePerItem}</span>
+    <span>${newProduct.datePurchase}</span>
   `;
   productList.appendChild(listItem);
 }
@@ -149,4 +160,36 @@ function toggleCart() {
   const mainContent = document.querySelector('main');
   cart.classList.toggle('hidden');
   mainContent.classList.toggle('main-blurred');
+}
+
+// Function to handle file input change and update image preview
+function handleFileInputChange(event) {
+  const file = event.target.files[0]; // Get the selected file
+  const imagePreview = document.getElementById('product-image-preview');
+
+  // Ensure that a file was selected and it's an image
+  if (file && file.type.startsWith('image')) {
+    const reader = new FileReader();
+
+    reader.onload = function (e) {
+      // Create a new image element
+      const img = document.createElement('img');
+      img.src = e.target.result; // Set the image source to the data URL
+      img.alt = 'Product Image';
+
+      // Clear previous content in the image preview container
+      imagePreview.innerHTML = '';
+      // Append the image to the image preview container
+      imagePreview.appendChild(img);
+    };
+
+    // Read the file as a data URL
+    reader.readAsDataURL(file);
+  }
+}
+
+// Event listener for file input change
+const fileInput = document.getElementById('product-image');
+if (fileInput) {
+  fileInput.addEventListener('change', handleFileInputChange);
 }

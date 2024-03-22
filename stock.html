@@ -63,10 +63,43 @@
     <div class="form-content">
       <button id="close-form-button" onclick="closeAddProductForm()">×</button>
       <form id="add-product-form">
-        <label for="product-name">Product Name:</label>
-        <input type="text" id="product-name" required>
-
         <!-- Additional input fields for product details can be added here -->
+
+        <!-- Display area for the selected product image and button to choose file -->
+        <div class="image-upload-container">
+          <input type="file" id="product-image" accept="image/*" style="display: none;">
+          <label for="product-image" class="file-upload-button">
+            <!-- Use the clickable pencil icon -->
+            <i class="fas fa-pencil-alt"></i>
+          </label>
+          <div id="product-image-preview" class="image-preview">
+            <!-- Selected image will be displayed here -->
+          </div>
+        </div>      
+  
+        <label for="barcode">Barcode:</label>
+        <input type="text" id="barcode">
+  
+        <label for="category">Category:</label>
+        <input type="text" id="category">
+  
+        <label for="description">Description:</label>
+        <textarea id="description" rows="4"></textarea>
+  
+        <label for="quantity">Quantity:</label>
+        <input type="text" id="quantity">
+  
+        <label for="items">Items:</label>
+        <input type="number" id="items">
+  
+        <label for="price-per-item">Price per Item:</label>
+        <input type="number" id="price-per-item">
+  
+        <label for="date-purchase">Date of Purchase:</label>
+        <input type="date" id="date-purchase">
+  
+        <label for="date-expiry">Date of Expiry:</label>
+        <input type="date" id="date-expiry">
 
         <button id="add-product-button" type="submit">Add Product</button>
       </form>
