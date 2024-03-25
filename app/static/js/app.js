@@ -102,11 +102,6 @@ function editShop(row) {
   }
 }
 
-
-
-
-
-
 // Function to delete a shop entry
 function deleteShop(row) {
   // Get the row containing the shop details
@@ -131,6 +126,7 @@ function displayAddProductForm() {
 function handleAddProductFormSubmit(event) {
   event.preventDefault(); // Prevent default form submission behavior
 
+  var image = document.getElementById('product-image-preview').querySelector('img');
   var description = document.getElementById('description').value;
   var quantity = document.getElementById('quantity').value;
   var items = document.getElementById('items').value;
@@ -142,6 +138,7 @@ function handleAddProductFormSubmit(event) {
 
   // Create a new product object
   var newProduct = {
+    image: image ? image.src : '',
     description: description,
     quantity: quantity,
     items: items,
@@ -168,6 +165,7 @@ function addNewProductToTable(newProduct) {
   var productList = document.querySelector('.product-list tbody');
   var newRow = document.createElement('tr');
   newRow.innerHTML = `
+    <td><img src="${newProduct.image}" alt="Product Image"></td>
     <td>${newProduct.description}</td>
     <td>${newProduct.quantity}</td>
     <td>${newProduct.items}</td>
