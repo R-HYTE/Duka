@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Stocks Page</title>
-  <link rel="stylesheet" href="/Duka/app/static/css/styles.css">
-  <link rel="stylesheet" href="/Duka/app/static/css/stocks.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/stocks.css') }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Font Awesome for icons -->
 </head>
 <body>
@@ -16,18 +16,18 @@
       <div class="bar"></div>
     </div>
     <div class="shop-info">
-      <img src="/Duka/app/static/images/shop-icon.png" alt="Shop Icon">
+      <img src="{{ url_for('static', filename='images/shop-icon.png') }}" alt="Shop Icon">
       <span>Shop Name</span>
     </div>
     <nav class="navigation-menu">
       <div class="logo-container">
-        <img src="/Duka/app/static/images/logo.jpg" alt="Logo">
+        <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Logo">
       </div>
       <ul>
-        <li><a href="/Duka/app/templates/index.html"><i class="fas fa-chart-line"></i>Dashboard</a></li>
-        <li><a href="/Duka/app/templates/my_shops.html"><i class="fas fa-store"></i>My Shops</a></li> <!-- Link to the My Shops page -->
-        <li><a href="/Duka/app/templates/stock.html"><i class="fas fa-box"></i>Stocks</a></li>
-        <li><a href="/Duka/app/templates/sell.html"><i class="fas fa-handshake"></i>Sell</a></li>
+        <li><a href="{{ url_for('index') }}"><i class="fas fa-chart-line"></i>Dashboard</a></li>
+        <li><a href="{{ url_for('my_shops') }}"><i class="fas fa-store"></i>My Shops</a></li> <!-- Link to the My Shops page -->
+        <li><a href="{{ url_for('stock') }}"><i class="fas fa-box"></i>Stocks</a></li>
+        <li><a href="{{ url_for('sell') }}"><i class="fas fa-handshake"></i>Sell</a></li>
       </ul>
     </nav>
   </header>
@@ -113,6 +113,6 @@
 
   <!-- Additional content goes here -->
 
-  <script src="/Duka/app/static/js/app.js" defer></script>
+  <script src="{{ url_for('static', filename='js/app.js') }}" defer></script>
 </body>
 </html>
