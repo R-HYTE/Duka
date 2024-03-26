@@ -16,7 +16,7 @@ function displayNewShopForm() {
 
 // Function to handle shop form submission
 function handleShopFormSubmit(event) {
-  event.preventDefault(); // Prevent default form submission behavior
+  // event.preventDefault(); // Prevent default form submission behavior
 
   var shopNameInput = document.getElementById('shop-name');
   var shopName = shopNameInput.value;
@@ -45,20 +45,6 @@ function handleShopFormSubmit(event) {
   mainContent.classList.remove('main-blurred');
 }
 
-// Function to add a new shop to the table
-function addNewShopToTable(newShop) {
-  var shopList = document.getElementById('shop-list');
-  var newRow = document.createElement('tr');
-  newRow.innerHTML = `
-    <td>${newShop.name}</td>
-    <td>${newShop.location}</td>
-    <td>
-      <button onclick="editShop(this)"><i class="fas fa-edit"></i></button>
-      <button onclick="deleteShop(this)"><i class="fas fa-trash-alt"></i></button>
-    </td>
-  `;
-  shopList.appendChild(newRow);
-}
 
 // Event listener for the New Shop button
 var newShopButton = document.getElementById('new-shop-button');
@@ -110,7 +96,6 @@ function deleteShop(row) {
   // Remove the row from the table
   shopRow.parentNode.removeChild(shopRow);
 }
-
 
 // Function to display the add product form
 function displayAddProductForm() {
