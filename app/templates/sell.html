@@ -6,7 +6,7 @@
   <title>Sell Products</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/sell.css') }}">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
   <header>
@@ -32,7 +32,6 @@
     </nav>
   </header>
   <main>
-    <!-- Main content area -->
     <section id="content">
       <div class="page-title">
         <h2>Sell Products</h2>
@@ -42,19 +41,15 @@
           <div class="cart-container">
             <button class="cart-button" onclick="toggleCart()"><i class="fas fa-shopping-cart"></i></button>
           </div>
-          <!-- Search input and scan button -->
           <div class="sell-search">
             <input type="text" id="search-input" placeholder="Search for a product...">
             <button onclick="takePicture()"><i class="fas fa-camera"></i></button>
           </div>
 
-          <!-- List of available products -->
           <div class="product-list">
-            <!-- Placeholder for the list of products -->
             <ul id="product-list">
               <li>Product 1</li>
               <li>Product 2</li>
-              <!-- Add more product items dynamically using JavaScript -->
             </ul>
           </div>
         </div>
@@ -62,7 +57,6 @@
     </section>
   </main>
   <div class="cart hidden">
-    <!-- Cart content goes here -->
     <div class="cart-summary">
       <button class="close-cart" onclick="toggleCart()">
         <i class="fas fa-times"></i>
@@ -71,7 +65,6 @@
         <i class="fas fa-arrow-left"></i> Back to Selling
       </button>
       <div class="item-list">
-        <!-- List of items added to the cart will go here -->
       </div>
       <div class="subtotal">
         Subtotal: $<span id="subtotal-amount">0.00</span>

@@ -6,7 +6,7 @@
   <title>Stocks Page</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/products.css') }}">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
   <header>
@@ -25,7 +25,7 @@
       </div>
       <ul>
         <li><a href="{{ url_for('index') }}"><i class="fas fa-chart-line"></i>Dashboard</a></li>
-        <li><a href="{{ url_for('my_shops') }}"><i class="fas fa-store"></i>My Shops</a></li> <!-- Link to the My Shops page -->
+        <li><a href="{{ url_for('my_shops') }}"><i class="fas fa-store"></i>My Shops</a></li>
         <li><a href="{{ url_for('products') }}"><i class="fas fa-box"></i>Products</a></li>
         <li><a href="{{ url_for('sell') }}"><i class="fas fa-handshake"></i>Sell</a></li>
       </ul>
@@ -78,22 +78,17 @@
     </section>
   </main>
 
-  <!-- Form for adding a new product -->
+  <!-- New product form -->
   <div id="add-product-form-container" class="form-container hidden">
     <div class="form-content">
       <button id="close-form-button" onclick="closeAddProductForm()">×</button>
       <form id="add-product-form" action="/products" method="POST" enctype="multipart/form-data">
-        <!-- Additional input fields for product details can be added here -->
-
-        <!-- Display area for the selected product image and button to choose file -->
         <div class="image-upload-container">
           <input type="file" id="product-image" accept="image/*" style="display: none;" name="image">
           <label for="product-image" class="file-upload-button">
-            <!-- Use the clickable pencil icon -->
             <i class="fas fa-pencil-alt"></i>
           </label>
           <div id="product-image-preview" class="image-preview">
-            <!-- Selected image will be displayed here -->
           </div>
         </div>      
   
@@ -125,9 +120,6 @@
       </form>
     </div>
   </div>
-
-  <!-- Additional content goes here -->
-
   <script src="{{ url_for('static', filename='js/app.js') }}" defer></script>
 </body>
 </html>

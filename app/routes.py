@@ -8,24 +8,27 @@ from datetime import datetime
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
+
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+
 
 @app.route('/')
 @app.route('/index')
 def index():
     return render_template('index.html')
 
+
 @app.route('/my_shops', methods=['GET', 'POST'])
 def my_shops():
     # Check if the Shop table exists
     inspector = inspect(db.engine)
     if 'shop' not in inspector.get_table_names():
-        # If the Shop table does not exist, create it
         Shop.__table__.create(db.engine)
 
     if request.method == 'POST':
@@ -45,12 +48,12 @@ def my_shops():
     shops = Shop.query.all()
     return render_template('my_shops.html', shops=shops)
 
+
 @app.route('/products', methods=['GET', 'POST'])
 def products():
     # Check if the Product table exists
     inspector = inspect(db.engine)
     if 'product' not in inspector.get_table_names():
-        # If the Product table does not exist, create it
         Product.__table__.create(db.engine)
 
     if request.method == 'POST':
@@ -59,8 +62,6 @@ def products():
         quantity = request.form.get('quantity')
         items = request.form.get('items')
         price_per_item = request.form.get('price_per_item')
-        
-        # Parse date string into a Python datetime object
         date_purchase_str = request.form.get('date_purchase')
         date_purchase = datetime.strptime(date_purchase_str, '%Y-%m-%d')
 
@@ -90,17 +91,15 @@ def products():
             image_path=image_path
         )
 
-        # Add the new product to the database
         db.session.add(new_product)
         db.session.commit()
-
-        # Redirect back to the products page
         return redirect(url_for('products'))
 
     # Fetch products from the database
     products = Product.query.all()
 
     return render_template('products.html', products=products)
+
 
 @app.route('/sell')
 def sell():
