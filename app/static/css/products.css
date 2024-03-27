@@ -125,7 +125,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url('images/default-image.png'); /* Path to your default image */
+  background-image: url('/static/images/default-image.png'); /* Path to your default image */
   background-size: cover; /* Resize the background image to cover the entire container */
   background-position: center;
 }

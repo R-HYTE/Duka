@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Stocks Page</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/stocks.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/products.css') }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Font Awesome for icons -->
 </head>
 <body>
@@ -26,7 +26,7 @@
       <ul>
         <li><a href="{{ url_for('index') }}"><i class="fas fa-chart-line"></i>Dashboard</a></li>
         <li><a href="{{ url_for('my_shops') }}"><i class="fas fa-store"></i>My Shops</a></li> <!-- Link to the My Shops page -->
-        <li><a href="{{ url_for('stock') }}"><i class="fas fa-box"></i>Stocks</a></li>
+        <li><a href="{{ url_for('products') }}"><i class="fas fa-box"></i>Products</a></li>
         <li><a href="{{ url_for('sell') }}"><i class="fas fa-handshake"></i>Sell</a></li>
       </ul>
     </nav>
@@ -55,7 +55,16 @@
               </tr>
             </thead>
             <tbody>
-              <!-- Product items will be dynamically added here -->
+              {% for product in products %}
+              <tr>
+                <td><img src="{{ product.image_path }}" alt="Product Image"></td>
+                <td>{{ product.description }}</td>
+                <td>{{ product.quantity }}</td>
+                <td>{{ product.items }}</td>
+                <td>{{ product.price_per_item }}</td>
+                <td>{{ product.date_purchase }}</td>
+              </tr>
+              {% endfor %}
             </tbody>
           </table>          
         </div>
@@ -67,12 +76,12 @@
   <div id="add-product-form-container" class="form-container hidden">
     <div class="form-content">
       <button id="close-form-button" onclick="closeAddProductForm()">×</button>
-      <form id="add-product-form">
+      <form id="add-product-form" action="/products" method="POST" enctype="multipart/form-data">
         <!-- Additional input fields for product details can be added here -->
 
         <!-- Display area for the selected product image and button to choose file -->
         <div class="image-upload-container">
-          <input type="file" id="product-image" accept="image/*" style="display: none;">
+          <input type="file" id="product-image" accept="image/*" style="display: none;" name="image">
           <label for="product-image" class="file-upload-button">
             <!-- Use the clickable pencil icon -->
             <i class="fas fa-pencil-alt"></i>
@@ -83,28 +92,28 @@
         </div>      
   
         <label for="barcode">Barcode:</label>
-        <input type="text" id="barcode">
+        <input type="text" id="barcode" name="barcode" required>
   
         <label for="category">Category:</label>
-        <input type="text" id="category">
+        <input type="text" id="category" name="category" required>
   
         <label for="description">Description:</label>
-        <textarea id="description" rows="4"></textarea>
+        <textarea id="description" rows="4" name="description" required></textarea>
   
         <label for="quantity">Quantity:</label>
-        <input type="text" id="quantity">
+        <input type="text" id="quantity" name="quantity" required>
   
         <label for="items">Items:</label>
-        <input type="number" id="items">
+        <input type="number" id="items" name="items" required>
   
         <label for="price-per-item">Price per Item:</label>
-        <input type="number" id="price-per-item">
+        <input type="number" id="price-per-item" name="price_per_item" required>
   
         <label for="date-purchase">Date of Purchase:</label>
-        <input type="date" id="date-purchase">
+        <input type="date" id="date-purchase" name="date_purchase" required>
   
         <label for="date-expiry">Date of Expiry:</label>
-        <input type="date" id="date-expiry">
+        <input type="date" id="date-expiry" name="date_expiry" required>
 
         <button id="add-product-button" type="submit">Add Product</button>
       </form>

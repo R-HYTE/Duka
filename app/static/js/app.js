@@ -109,7 +109,7 @@ function displayAddProductForm() {
 
 // Function to handle add product form submission
 function handleAddProductFormSubmit(event) {
-  event.preventDefault(); // Prevent default form submission behavior
+  // event.preventDefault(); // Prevent default form submission behavior
 
   var image = document.getElementById('product-image-preview').querySelector('img');
   var description = document.getElementById('description').value;
