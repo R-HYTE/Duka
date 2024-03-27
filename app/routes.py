@@ -1,4 +1,4 @@
-from flask import request, render_template, redirect, url_for
+from flask import request, render_template, redirect, url_for, send_from_directory
 from app import app, db
 from app.models import Product, Shop
 from sqlalchemy import inspect
@@ -10,6 +10,10 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+@app.route('/uploads/<filename>')
+def uploaded_file(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
 @app.route('/')
 @app.route('/index')
@@ -67,8 +71,10 @@ def products():
                 image_path = None
             elif image_file and allowed_file(image_file.filename):
                 filename = secure_filename(image_file.filename)
-                image_path = os.path.join(app.instance_path, 'uploads', filename)
-                image_file.save(image_path)
+                # Save the file to the uploads folder
+                image_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                # Store the relative path in the database
+                image_path = filename # Store only the filename, without the path
             else:
                 return "Invalid file format", 400
         else:

@@ -57,7 +57,13 @@
             <tbody>
               {% for product in products %}
               <tr>
-                <td><img src="{{ product.image_path }}" alt="Product Image"></td>
+                <td>
+                  {% if product.image_path %}
+                    <img src="{{ url_for('uploaded_file', filename=product.image_path) }}" alt="Product Image">
+                  {% else %}
+                      <img src="{{ url_for('static', filename='images/default-image.png') }}" alt="Default Product Image">
+                  {% endif %}
+                </td>
                 <td>{{ product.description }}</td>
                 <td>{{ product.quantity }}</td>
                 <td>{{ product.items }}</td>
