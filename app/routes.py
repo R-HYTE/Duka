@@ -103,4 +103,6 @@ def products():
 
 @app.route('/sell')
 def sell():
-    return render_template('sell.html')
+    # Fetch products from the database
+    products = Product.query.all()
+    return render_template('sell.html', products=products)

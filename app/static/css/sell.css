@@ -47,6 +47,40 @@
   color: #42260c;
 }
 
+/* CSS for styling the product list table */
+.product-list {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.product-list th {
+  font-weight: bold;
+  font-size: 1.2em;
+  text-align: center;
+  padding: 10px;
+}
+
+.product-list td {
+  padding: 10px;
+  border-top: 1px solid #ccc;
+}
+
+.product-list td img {
+  max-width: 50px;
+  max-height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.product-list tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.product-list tbody td {
+  text-align: center;
+}
+
 /* Cart button */
 .cart-button {
   position: absolute;
@@ -115,6 +149,7 @@
 
 .item-list {
   /* Style for the list of items added to the cart */
+  margin-top: 20px;
   margin-bottom: 100px;
 }
 
@@ -134,6 +169,67 @@
   cursor: pointer;
 }
 
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.cart-item img {
+  max-width: 50px;
+  max-height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.cart-item-details {
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-item-description {
+  font-weight: bold;
+  text-align: right;
+}
+
+.cart-item-price {
+  font-weight: bold;
+}
+
+/* Style for the cart item actions */
+.cart-item-actions {
+  display: flex;
+  align-items: center;
+  margin-top: 10px; /* Add margin to separate from the description */
+}
+
+/* Style for the remove button */
+.remove-button {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+/* Style for the reduce and increase buttons */
+.reduce-button,
+.increase-button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
 /* Hover effect on cart button */
 .cart-button:hover {
   background-color: #cba077;
@@ -141,5 +237,20 @@
 
 /* Hover effect on checkout button */
 .checkout-button:hover {
+  background-color: #cba077;
+}
+
+/* Style for the "+" button */
+.add-button {
+  background-color: #eac6a1;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.add-button:hover {
   background-color: #cba077;
 }

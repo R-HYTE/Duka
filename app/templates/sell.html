@@ -45,13 +45,36 @@
             <input type="text" id="search-input" placeholder="Search for a product...">
             <button onclick="takePicture()"><i class="fas fa-camera"></i></button>
           </div>
-
-          <div class="product-list">
-            <ul id="product-list">
-              <li>Product 1</li>
-              <li>Product 2</li>
-            </ul>
-          </div>
+          <table class="product-list">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Image</th>
+                <th>Description</th>
+                <th>Quantity</th>
+                <th>Items</th>
+                <th>Price per Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for product in products %}
+              <tr>
+                <td class="add-to-cart"><button class="add-button">+</button></td>
+                <td>
+                  {% if product.image_path %}
+                    <img src="{{ url_for('uploaded_file', filename=product.image_path) }}" alt="Product Image">
+                  {% else %}
+                    <img src="{{ url_for('static', filename='images/default-image.png') }}" alt="Default Product Image">
+                  {% endif %}
+                </td>
+                <td>{{ product.description }}</td>
+                <td>{{ product.quantity }}</td>
+                <td>{{ product.items }}</td>
+                <td>{{ product.price_per_item }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
         </div>
       </div>
     </section>

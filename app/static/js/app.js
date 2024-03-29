@@ -45,7 +45,6 @@ function handleShopFormSubmit(event) {
   mainContent.classList.remove('main-blurred');
 }
 
-
 // Event listener for the New Shop button
 var newShopButton = document.getElementById('new-shop-button');
 if (newShopButton) {
@@ -150,6 +149,7 @@ function addNewProductToTable(newProduct) {
   var productList = document.querySelector('.product-list tbody');
   var newRow = document.createElement('tr');
   newRow.innerHTML = `
+    <td class="add-to-cart"><button class="add-button" onclick="addToCart(this)">+</button></td>
     <td><img src="${newProduct.image}" alt="Product Image"></td>
     <td>${newProduct.description}</td>
     <td>${newProduct.quantity}</td>
@@ -160,10 +160,70 @@ function addNewProductToTable(newProduct) {
   productList.appendChild(newRow);
 }
 
+// Function to add item to the cart
+function addToCart(button) {
+  console.log("Adding item to cart...");
+  var row = button.parentNode.parentNode;
+  var description = row.cells[2].textContent;
+  var quantity = parseInt(row.cells[3].textContent);
+  var items = parseInt(row.cells[4].textContent);
+  var pricePerItem = parseFloat(row.cells[5].textContent);
+  var imageSrc = row.cells[1].querySelector('img').src;
 
-// Event listener for the Add Product form submission
-var addProductForm = document.getElementById('add-product-form');
-addProductForm.addEventListener('submit', handleAddProductFormSubmit);
+  console.log("Description:", description);
+  console.log("Quantity:", quantity);
+  console.log("Items:", items);
+  console.log("Price Per Item:", pricePerItem);
+  console.log("Image Source:", imageSrc);
+
+  // Check if there are items available
+  if (quantity > 0) {
+    console.log("Item added to cart!");
+    var cartItemList = document.querySelector('.cart .item-list');
+    var subtotalAmount = document.getElementById('subtotal-amount');
+
+    // Create a new cart item row
+    var newRow = document.createElement('div');
+    newRow.classList.add('cart-item');
+    newRow.innerHTML = `
+      <img src="${imageSrc}" alt="Product Image">
+      <div class="cart-item-details">
+        <div class="cart-item-description">${description}</div>
+        <button class="remove-button" onclick="removeFromCart(this)">Remove</button>
+        <div class="cart-item-price">${pricePerItem}</div>
+      </div>
+    `;
+    cartItemList.appendChild(newRow);
+
+    // Update subtotal
+    var subtotal = parseFloat(subtotalAmount.textContent);
+    subtotal += pricePerItem;
+    subtotalAmount.textContent = subtotal.toFixed(2);
+
+    // Update quantity and items
+    quantity -= 1;
+    items += 1;
+    row.cells[3].textContent = quantity;
+    row.cells[4].textContent = items;
+  } else {
+    alert('No more items available');
+  }
+}
+
+// Function to remove item from the cart
+function removeFromCart(button) {
+  var cartItem = button.parentNode.parentNode;
+  var price = parseFloat(cartItem.querySelector('.cart-item-price').textContent);
+  var subtotalAmount = document.getElementById('subtotal-amount');
+  var subtotal = parseFloat(subtotalAmount.textContent);
+  
+  // Update subtotal
+  subtotal -= price;
+  subtotalAmount.textContent = subtotal.toFixed(2);
+
+  // Remove the cart item from the DOM
+  cartItem.parentNode.removeChild(cartItem);
+}
 
 // Function to close the add product form
 function closeAddProductForm() {
@@ -214,3 +274,11 @@ const fileInput = document.getElementById('product-image');
 if (fileInput) {
   fileInput.addEventListener('change', handleFileInputChange);
 }
+
+// Event listener for the "+" buttons
+var addButtonList = document.querySelectorAll('.add-button');
+addButtonList.forEach(function(button) {
+  button.addEventListener('click', function() {
+    addToCart(this); // Pass the button element as an argument
+  });
+});
