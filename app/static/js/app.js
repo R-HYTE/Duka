@@ -149,7 +149,7 @@ function addNewProductToTable(newProduct) {
   var productList = document.querySelector('.product-list tbody');
   var newRow = document.createElement('tr');
   newRow.innerHTML = `
-    <td class="add-to-cart"><button class="add-button" onclick="addToCart(this)">+</button></td>
+    <td class="add-to-cart"><button class="add-button">+</button></td>
     <td><img src="${newProduct.image}" alt="Product Image"></td>
     <td>${newProduct.description}</td>
     <td>${newProduct.quantity}</td>
@@ -189,9 +189,14 @@ function addToCart(button) {
       <img src="${imageSrc}" alt="Product Image">
       <div class="cart-item-details">
         <div class="cart-item-description">${description}</div>
-        <button class="remove-button" onclick="removeFromCart(this)">Remove</button>
-        <div class="cart-item-price">${pricePerItem}</div>
+        <button class="remove-button" onclick="removeFromCart(this)"><i class="fas fa-trash-alt"></i> Remove</button>
       </div>
+      <div class="cart-item-actions">
+        <button class="reduce-button">-</button>
+        <div class="cart-item-quantity">1</div>
+        <button class="increase-button">+</button>
+      </div>
+      <div class="cart-item-price">${pricePerItem}</div>
     `;
     cartItemList.appendChild(newRow);
 
@@ -212,7 +217,7 @@ function addToCart(button) {
 
 // Function to remove item from the cart
 function removeFromCart(button) {
-  var cartItem = button.parentNode.parentNode;
+  var cartItem = button.closest('.cart-item'); // Find the closest parent element with the class 'cart-item'
   var price = parseFloat(cartItem.querySelector('.cart-item-price').textContent);
   var subtotalAmount = document.getElementById('subtotal-amount');
   var subtotal = parseFloat(subtotalAmount.textContent);
@@ -224,6 +229,8 @@ function removeFromCart(button) {
   // Remove the cart item from the DOM
   cartItem.parentNode.removeChild(cartItem);
 }
+
+
 
 // Function to close the add product form
 function closeAddProductForm() {
@@ -276,9 +283,8 @@ if (fileInput) {
 }
 
 // Event listener for the "+" buttons
-var addButtonList = document.querySelectorAll('.add-button');
-addButtonList.forEach(function(button) {
-  button.addEventListener('click', function() {
-    addToCart(this); // Pass the button element as an argument
-  });
+document.addEventListener('click', function(event) {
+  if (event.target.classList.contains('add-button')) {
+    addToCart(event.target); // Pass the clicked button element
+  }
 });

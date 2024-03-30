@@ -127,24 +127,24 @@
   width: 90%;
 }
 
-.close-cart {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
+.close-cart,
 .back-to-selling {
   position: absolute;
   top: 10px;
-  left: 10px;
   background: none;
   border: none;
   cursor: pointer;
-  color: blue;
-  margin-bottom: 20px;
+  font-size: 1.3rem;
+}
+
+.close-cart {
+  right: 10px;
+}
+
+.back-to-selling {
+  left: 10px;
+  color: black;
+  margin-bottom: 18px;
 }
 
 .item-list {
@@ -171,8 +171,8 @@
 
 .cart-item {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   padding: 10px;
   border-bottom: 1px solid #ccc;
 }
@@ -187,35 +187,34 @@
 .cart-item-details {
   flex-grow: 1;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
 }
 
 .cart-item-description {
   font-weight: bold;
-  text-align: right;
+  font-size: 1em; /* Adjusted font size */
+  width:150px;
 }
 
 .cart-item-price {
   font-weight: bold;
+
 }
 
 /* Style for the cart item actions */
 .cart-item-actions {
   display: flex;
   align-items: center;
-  margin-top: 10px; /* Add margin to separate from the description */
+  width: 120px;
 }
 
 /* Style for the remove button */
 .remove-button {
-  background-color: #e74c3c;
-  color: white;
+  background-color: white;
+  color: #cba077;
   border: none;
-  border-radius: 5px;
-  padding: 5px 10px;
   cursor: pointer;
-  margin-right: 10px;
+  align-self: flex-start; /* Align to the left */
 }
 
 /* Style for the reduce and increase buttons */
@@ -227,7 +226,7 @@
   border-radius: 5px;
   padding: 5px 10px;
   cursor: pointer;
-  margin-right: 5px;
+  margin: 5px;
 }
 
 /* Hover effect on cart button */
