@@ -165,7 +165,6 @@ function addNewProductToTable(newProduct) {
 
 // Function to add item to the cart
 function addToCart(button) {
-  console.log("Adding item to cart...");
   var row = button.parentNode.parentNode;
   var description = row.cells[2].textContent;
   var quantity = parseInt(row.cells[3].textContent);
@@ -173,15 +172,8 @@ function addToCart(button) {
   var pricePerItem = parseFloat(row.cells[5].textContent);
   var imageSrc = row.cells[1].querySelector('img').src;
 
-  console.log("Description:", description);
-  console.log("Quantity:", quantity);
-  console.log("Items:", items);
-  console.log("Price Per Item:", pricePerItem);
-  console.log("Image Source:", imageSrc);
-
   // Check if there are items available
   if (quantity > 0) {
-    console.log("Item added to cart!");
     var cartItemList = document.querySelector('.cart .item-list');
     var subtotalAmount = document.getElementById('subtotal-amount');
 
@@ -235,7 +227,6 @@ function reduceQuantity(button) {
 
 // Function to increase quantity of items in cart
 function increaseQuantity(button) {
-  console.log("increaseQuantity function called");
   var cartItem = button.closest('.cart-item');
   var quantityElement = cartItem.querySelector('.cart-item-quantity');
   var subtotalAmount = document.getElementById('subtotal-amount');
