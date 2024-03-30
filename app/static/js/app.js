@@ -4,6 +4,7 @@ function toggleMenu() {
   menu.classList.toggle('active'); // Toggle the 'active' class
 }
 
+
 // Function to display the new shop form
 function displayNewShopForm() {
   var newShopForm = document.getElementById('new-shop-form');
@@ -14,13 +15,11 @@ function displayNewShopForm() {
   mainContent.classList.add('main-blurred');
 }
 
+
 // Function to handle shop form submission
 function handleShopFormSubmit(event) {
-  // event.preventDefault(); // Prevent default form submission behavior
-
   var shopNameInput = document.getElementById('shop-name');
   var shopName = shopNameInput.value;
-
   var locationInput = document.getElementById('location');
   var location = locationInput.value;
 
@@ -30,7 +29,6 @@ function handleShopFormSubmit(event) {
   var newShop = {
     name: shopName,
     location: location,
-    // Add additional properties for location based on GPS if needed
   };
 
   // Add the new shop to the table
@@ -45,17 +43,20 @@ function handleShopFormSubmit(event) {
   mainContent.classList.remove('main-blurred');
 }
 
+
 // Event listener for the New Shop button
 var newShopButton = document.getElementById('new-shop-button');
 if (newShopButton) {
     newShopButton.addEventListener('click', displayNewShopForm);
 }
 
+
 // Event listener for shop form submission
 var addShopForm = document.getElementById('add-shop-form');
 if (addShopForm) {
   addShopForm.addEventListener('submit', handleShopFormSubmit);
 }
+
 
 // Function to close the new shop form
 function closeNewShopForm() {
@@ -66,6 +67,7 @@ function closeNewShopForm() {
   var mainContent = document.querySelector('main');
   mainContent.classList.remove('main-blurred');
 }
+
 
 // Function to edit shop details
 function editShop(row) {
@@ -87,6 +89,7 @@ function editShop(row) {
   }
 }
 
+
 // Function to delete a shop entry
 function deleteShop(row) {
   // Get the row containing the shop details
@@ -95,6 +98,7 @@ function deleteShop(row) {
   // Remove the row from the table
   shopRow.parentNode.removeChild(shopRow);
 }
+
 
 // Function to display the add product form
 function displayAddProductForm() {
@@ -106,17 +110,15 @@ function displayAddProductForm() {
   mainContent.classList.add('main-blurred');
 }
 
+
 // Function to handle add product form submission
 function handleAddProductFormSubmit(event) {
-  // event.preventDefault(); // Prevent default form submission behavior
-
   var image = document.getElementById('product-image-preview').querySelector('img');
   var description = document.getElementById('description').value;
   var quantity = document.getElementById('quantity').value;
   var items = document.getElementById('items').value;
   var pricePerItem = document.getElementById('price-per-item').value;
   var datePurchase = document.getElementById('date-purchase').value;
-
 
   // Validate input fields if needed
 
@@ -131,7 +133,6 @@ function handleAddProductFormSubmit(event) {
     // Add additional properties for product
   };
 
-
   // Add the new product to the table
   addNewProductToTable(newProduct);
 
@@ -143,6 +144,7 @@ function handleAddProductFormSubmit(event) {
   var mainContent = document.querySelector('main');
   mainContent.classList.remove('main-blurred');
 }
+
 
 // Function to add a new product to the table
 function addNewProductToTable(newProduct) {
@@ -159,6 +161,7 @@ function addNewProductToTable(newProduct) {
   `;
   productList.appendChild(newRow);
 }
+
 
 // Function to add item to the cart
 function addToCart(button) {
@@ -188,15 +191,18 @@ function addToCart(button) {
     newRow.innerHTML = `
       <img src="${imageSrc}" alt="Product Image">
       <div class="cart-item-details">
-        <div class="cart-item-description">${description}</div>
-        <button class="remove-button" onclick="removeFromCart(this)"><i class="fas fa-trash-alt"></i> Remove</button>
+        <div>
+          <div class="cart-item-description">${description}</div>
+          <button class="remove-button" onclick="removeFromCart(this)"><i class="fas fa-trash-alt"></i> Remove</button>
+        </div>
+        <div class="cart-item-actions">
+          <button class="reduce-button">-</button>
+          <div class="cart-item-quantity">1</div>
+          <button class="increase-button">+</button>
+        </div>
+        <div class="cart-item-price">${pricePerItem.toFixed(2)}</div>
       </div>
-      <div class="cart-item-actions">
-        <button class="reduce-button">-</button>
-        <div class="cart-item-quantity">1</div>
-        <button class="increase-button">+</button>
-      </div>
-      <div class="cart-item-price">${pricePerItem}</div>
+
     `;
     cartItemList.appendChild(newRow);
 
@@ -205,19 +211,62 @@ function addToCart(button) {
     subtotal += pricePerItem;
     subtotalAmount.textContent = subtotal.toFixed(2);
 
-    // Update quantity and items
-    quantity -= 1;
-    items += 1;
-    row.cells[3].textContent = quantity;
-    row.cells[4].textContent = items;
-  } else {
-    alert('No more items available');
   }
 }
 
+
+// Function to decrease quantity of items in cart
+function reduceQuantity(button) {
+  var cartItem = button.closest('.cart-item');
+  var quantityElement = cartItem.querySelector('.cart-item-quantity');
+  var subtotalAmount = document.getElementById('subtotal-amount');
+  var subtotal = parseFloat(subtotalAmount.textContent);
+  var pricePerItem = parseFloat(cartItem.querySelector('.cart-item-price').textContent);
+
+  var quantity = parseInt(quantityElement.textContent);
+  if (quantity > 1) {
+    quantity -= 1;
+    quantityElement.textContent = quantity;
+    subtotal -= pricePerItem;
+    subtotalAmount.textContent = subtotal.toFixed(2);
+  }
+}
+
+
+// Function to increase quantity of items in cart
+function increaseQuantity(button) {
+  console.log("increaseQuantity function called");
+  var cartItem = button.closest('.cart-item');
+  var quantityElement = cartItem.querySelector('.cart-item-quantity');
+  var subtotalAmount = document.getElementById('subtotal-amount');
+  var subtotal = parseFloat(subtotalAmount.textContent);
+  var pricePerItem = parseFloat(cartItem.querySelector('.cart-item-price').textContent);
+
+  var quantity = parseInt(quantityElement.textContent);
+  quantity += 1;
+  quantityElement.textContent = quantity;
+  subtotal += pricePerItem;
+  subtotalAmount.textContent = subtotal.toFixed(2);
+}
+
+
+// Event listener for the "Add to Cart" buttons
+document.addEventListener('click', function(event) {
+  if (event.target.classList.contains('add-button')) {
+    addToCart(event.target); // Pass the clicked button element
+  }
+  if (event.target.classList.contains('reduce-button')) {
+    reduceQuantity(event.target);
+  }
+  if (event.target.classList.contains('increase-button')) {
+    increaseQuantity(event.target);
+  }
+});
+
+
 // Function to remove item from the cart
 function removeFromCart(button) {
-  var cartItem = button.closest('.cart-item'); // Find the closest parent element with the class 'cart-item'
+  var cartItem = button.closest('.cart-item');
   var price = parseFloat(cartItem.querySelector('.cart-item-price').textContent);
   var subtotalAmount = document.getElementById('subtotal-amount');
   var subtotal = parseFloat(subtotalAmount.textContent);
@@ -231,7 +280,6 @@ function removeFromCart(button) {
 }
 
 
-
 // Function to close the add product form
 function closeAddProductForm() {
   var addProductFormContainer = document.getElementById('add-product-form-container');
@@ -242,6 +290,7 @@ function closeAddProductForm() {
   mainContent.classList.remove('main-blurred');
 }
 
+
 // Function to toggle cart display and blurred effect
 function toggleCart() {
   const cart = document.querySelector('.cart');
@@ -250,9 +299,10 @@ function toggleCart() {
   mainContent.classList.toggle('main-blurred');
 }
 
+
 // Function to handle file input change and update image preview
 function handleFileInputChange(event) {
-  const file = event.target.files[0]; // Get the selected file
+  const file = event.target.files[0];
   const imagePreview = document.getElementById('product-image-preview');
 
   // Ensure that a file was selected and it's an image
@@ -267,7 +317,6 @@ function handleFileInputChange(event) {
 
       // Clear previous content in the image preview container
       imagePreview.innerHTML = '';
-      // Append the image to the image preview container
       imagePreview.appendChild(img);
     };
 
@@ -276,15 +325,9 @@ function handleFileInputChange(event) {
   }
 }
 
+
 // Event listener for file input change
 const fileInput = document.getElementById('product-image');
 if (fileInput) {
   fileInput.addEventListener('change', handleFileInputChange);
 }
-
-// Event listener for the "+" buttons
-document.addEventListener('click', function(event) {
-  if (event.target.classList.contains('add-button')) {
-    addToCart(event.target); // Pass the clicked button element
-  }
-});
