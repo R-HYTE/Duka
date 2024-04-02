@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Duka</title>
+
+  {% block head %}{% endblock %}
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+  <header>
+    <div class="menu-icon" onclick="toggleMenu()">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+    <div class="shop-info">
+      <img src="{{ url_for('static', filename='images/shop-icon.png') }}" alt="Shop Icon">
+      <span>Shop Name</span>
+    </div>
+    <nav class="navigation-menu">
+      <div class="logo-container">
+        <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Logo">
+      </div>
+      <ul>
+        <li><a href="{{ url_for('index') }}"><i class="fas fa-chart-line"></i>Dashboard</a></li>
+        <li><a href="{{ url_for('my_shops') }}"><i class="fas fa-store"></i>My Shops</a></li>
+        <li><a href="{{ url_for('products') }}"><i class="fas fa-box"></i>Products</a></li>
+        <li><a href="{{ url_for('sell') }}" class="fas fa-handshake"></i>Sell</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  {% block body %}{% endblock %}
+
+  <script src="{{ url_for('static', filename='js/app.js') }}" defer></script>
+</body>
+</html>
