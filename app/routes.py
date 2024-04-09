@@ -1,4 +1,4 @@
-from flask import request, render_template, redirect, url_for, send_from_directory
+from flask import request, jsonify, render_template, redirect, url_for, send_from_directory
 from app import app, db
 from app.models import Product, Shop
 from sqlalchemy import inspect
@@ -47,6 +47,39 @@ def my_shops():
 
     shops = Shop.query.all()
     return render_template('my_shops.html', shops=shops)
+
+
+@app.route('/edit_shop', methods=['POST'])
+def edit_shop():
+    shop_name = request.form['shop_name'] # Get the shop name from the request
+    new_name = request.form['new_name']
+    new_location = request.form['new_location']
+    
+    # Find the shop by name
+    shop = Shop.query.filter_by(name=shop_name).first()
+    if shop:
+        # Update shop details
+        shop.name = new_name
+        shop.location = new_location
+        db.session.commit()
+        return jsonify(success=True)
+    else:
+        return jsonify(success=False, error='Shop not found'), 404
+
+
+@app.route('/delete_shop', methods=['POST'])
+def delete_shop():
+    shop_name = request.form['shop_name'] # Get the shop name from the request
+    
+    # Find the shop by name
+    shop = Shop.query.filter_by(name=shop_name).first()
+    if shop:
+        # Delete the shop
+        db.session.delete(shop)
+        db.session.commit()
+        return jsonify(success=True)
+    else:
+        return jsonify(success=False, error='Shop not found'), 404
 
 
 @app.route('/products', methods=['GET', 'POST'])

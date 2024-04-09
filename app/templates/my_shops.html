@@ -28,6 +28,10 @@
               <tr>
                 <td>{{ shop.name }}</td>
                 <td>{{ shop.location }}</td>
+                <td class="action-buttons">
+                  <button onclick="editShop(this)"><i class="fas fa-pencil-alt"></i></button>
+                  <button onclick="deleteShop(this)"><i class="fas fa-trash-alt"></i></button>
+                </td>
               </tr>
               {% endfor %}
             </tbody>

@@ -4,14 +4,14 @@
   border: 2px solid #eac6a1;
   border-radius: 10px;
   padding: 20px;
-  width: 90%; /* Adjust the width as needed */
-  margin: 20px auto; /* Center the section horizontally */
-  max-width: 600px; /* Add max-width to prevent it from becoming too wide */
+  width: 90%;
+  margin: 20px auto;
+  max-width: 600px;
 }
 
 .section-header {
   display: flex;
-  justify-content: flex-end; /* Align button to the right */
+  justify-content: flex-end;
   margin-bottom: 20px;
 }
 
@@ -30,7 +30,6 @@
   background: #cba077;
 }
 
-/* CSS for styling the shop list table */
 .shop-list {
   width: 100%;
   border-collapse: collapse;
@@ -40,7 +39,7 @@
 .shop-list th, .shop-list td {
   padding: 10px;
   text-align: center;
-  border: none; /* Remove all borders from table cells */
+  border: none;
 }
 
 .shop-list th {
@@ -55,4 +54,16 @@
 
 .shop-list tbody td {
   text-align: center;
+}
+
+.action-buttons button {
+  border: none;
+  padding: 8px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #eac6a1;
+}
+
+.action-buttons button:hover {
+  background-color: #cba077;
 }

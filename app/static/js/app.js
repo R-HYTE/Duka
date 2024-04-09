@@ -71,32 +71,64 @@ function closeNewShopForm() {
 
 // Function to edit shop details
 function editShop(row) {
-  // Get the row containing the shop details
   var shopRow = row.parentNode.parentNode;
-  
-  // Get the shop name and location from the row
-  var shopName = shopRow.cells[0].textContent;
-  var location = shopRow.cells[1].textContent;
-
-  // Prompt the user to edit the shop details
+  var shopName = shopRow.cells[0].textContent; // Get the shop name
   var editedShopName = prompt("Edit shop name:", shopName);
-  var editedLocation = prompt("Edit location:", location);
+  var editedLocation = prompt("Edit location:", shopRow.cells[1].textContent);
 
-  // Update the table with the edited details if the user provided new values
-  if (editedShopName && editedLocation) {
-    shopRow.cells[0].textContent = editedShopName;
-    shopRow.cells[1].textContent = editedLocation;
+  if (editedShopName !== null && editedLocation !== null) {
+    // Send AJAX request to backend to edit shop
+    fetch('/edit_shop', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: `shop_name=${encodeURIComponent(shopName)}&new_name=${encodeURIComponent(editedShopName)}&new_location=${encodeURIComponent(editedLocation)}`,
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        // Update UI if edit was successful
+        shopRow.cells[0].textContent = editedShopName;
+        shopRow.cells[1].textContent = editedLocation;
+      } else {
+        alert('Failed to edit shop: ' + data.error);
+      }
+    })
+    .catch(error => {
+      console.error('Error editing shop:', error);
+      alert('An error occurred while editing shop.');
+    });
   }
 }
 
 
 // Function to delete a shop entry
 function deleteShop(row) {
-  // Get the row containing the shop details
   var shopRow = row.parentNode.parentNode;
-  
-  // Remove the row from the table
-  shopRow.parentNode.removeChild(shopRow);
+  var shopName = shopRow.cells[0].textContent; // Get the shop name
+
+  // Send AJAX request to backend to delete shop
+  fetch('/delete_shop', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: `shop_name=${encodeURIComponent(shopName)}`, // Pass the shop name
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      // Remove the row from the table if deletion was successful
+      shopRow.parentNode.removeChild(shopRow);
+    } else {
+      alert('Failed to delete shop: ' + data.error);
+    }
+  })
+  .catch(error => {
+    console.error('Error deleting shop:', error);
+    alert('An error occurred while deleting shop.');
+  });
 }
 
 
