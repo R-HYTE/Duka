@@ -91,12 +91,16 @@ def products():
 
     if request.method == 'POST':
         # Get form data
+        barcode = request.form.get('barcode')
+        category = request.form.get('category')
         description = request.form.get('description')
         quantity = request.form.get('quantity')
         items = request.form.get('items')
         price_per_item = request.form.get('price_per_item')
         date_purchase_str = request.form.get('date_purchase')
         date_purchase = datetime.strptime(date_purchase_str, '%Y-%m-%d')
+        date_expiry_str = request.form.get('date_expiry')
+        date_expiry = datetime.strptime(date_expiry_str, '%Y-%m-%d')
 
         # Handle image file upload
         if 'image' in request.files:
@@ -116,11 +120,14 @@ def products():
 
         # Create a new product object
         new_product = Product(
+            barcode=barcode,
+            category=category,
             description=description,
             quantity=quantity,
             items=items,
             price_per_item=price_per_item,
             date_purchase=date_purchase,
+            date_expiry=date_expiry,
             image_path=image_path
         )
 
@@ -132,6 +139,47 @@ def products():
     products = Product.query.all()
 
     return render_template('products.html', products=products)
+
+
+@app.route('/get_product_details', methods=['GET'])
+def get_product_details():
+    product_id = request.args.get('id')
+    if product_id:
+        product = Product.query.get(product_id)
+        if product:
+            return jsonify({
+                'success': True,
+                'product': {
+                    'barcode': product.barcode,
+                    'category': product.category,
+                    'description': product.description,
+                    'quantity': product.quantity,
+                    'items': product.items,
+                    'price_per_item': product.price_per_item,
+                    'date_purchase': str(product.date_purchase),  # Convert date to string
+                    'date_expiry': str(product.date_expiry),  # Convert date to string
+                    'image_path': product.image_path
+                }
+            })
+        else:
+            return jsonify({'success': False, 'error': 'Product not found'}), 404
+    else:
+        return jsonify({'success': False, 'error': 'Product ID is required'}), 400
+    
+
+@app.route('/delete_product', methods=['POST'])
+def delete_product():
+    product_id = request.form['product_id']  # Get the product ID from the request
+    
+    # Find the product by ID
+    product = Product.query.get(product_id)
+    if product:
+        # Delete the product
+        db.session.delete(product)
+        db.session.commit()
+        return jsonify(success=True)
+    else:
+        return jsonify(success=False, error='Product not found'), 404
 
 
 @app.route('/sell')

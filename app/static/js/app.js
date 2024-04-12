@@ -195,6 +195,79 @@ function addNewProductToTable(newProduct) {
 }
 
 
+// Function to edit product details
+function editProduct(productId) {
+  // Send an AJAX request to fetch the complete product details
+  fetch(`/get_product_details?id=${productId}`)
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        // Populate the product form with the retrieved product details
+        document.getElementById('barcode').value = data.product.barcode;
+        document.getElementById('category').value = data.product.category;
+        document.getElementById('description').value = data.product.description;
+        document.getElementById('quantity').value = data.product.quantity;
+        document.getElementById('items').value = data.product.items;
+        document.getElementById('price-per-item').value = data.product.price_per_item;
+        document.getElementById('date-purchase').value = data.product.date_purchase;
+        document.getElementById('date-expiry').value = data.product.date_expiry;
+
+        // Construct the full URL of the image
+        var imageUrl = 'http://localhost:5000/uploads/' + data.product.image_path;
+
+        // Check if the image element exists before setting its src
+        var imageElement = document.getElementById('image');
+        if (imageElement) {
+          imageElement.src = imageUrl;
+        } else {
+          console.error('Image element not found');
+        }
+
+
+        // Display the product form
+        displayAddProductForm();
+      } else {
+        alert('Failed to fetch product details: ' + data.error);
+      }
+    })
+    .catch(error => {
+      console.error('Error fetching product details:', error);
+      alert('An error occurred while fetching product details.');
+    });
+}
+
+
+function deleteProduct(productId) {
+  // Confirm deletion with the user
+  if (confirm("Are you sure you want to delete this product?")) {
+      // Send AJAX request to delete the product
+      fetch('/delete_product', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: `product_id=${encodeURIComponent(productId)}`,
+      })
+      .then(response => response.json())
+      .then(data => {
+          if (data.success) {
+              // Remove the product row from the table if deletion was successful
+              const productRow = document.getElementById(`product-row-${productId}`);
+              if (productRow) {
+                  productRow.parentNode.removeChild(productRow);
+              }
+          } else {
+              alert('Failed to delete product: ' + data.error);
+          }
+      })
+      .catch(error => {
+          console.error('Error deleting product:', error);
+          alert('An error occurred while deleting product.');
+      });
+  }
+}
+
+
 // Function to add item to the cart
 function addToCart(button) {
   var row = button.parentNode.parentNode;
