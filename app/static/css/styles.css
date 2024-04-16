@@ -107,11 +107,11 @@ body {
 /* Form container styles */
 .form-container {
   position: fixed;
-  top: 40%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 999; /* Ensure the form is on top of other content */
-  width: 400px;
+  width: 350px;
 }
 
 /* Styles for the form content */
