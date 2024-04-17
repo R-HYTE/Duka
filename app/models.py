@@ -1,13 +1,16 @@
 from app import db
 
 
+# Define SQLAlchemy models for the database tables
 class Shop(db.Model):
+    # Shop table columns
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     location = db.Column(db.String(100), nullable=False)
 
 
 class Product(db.Model):
+    # Product table columns
     __tablename__ = 'product'
     id = db.Column(db.Integer, primary_key=True)
     barcode = db.Column(db.Text, nullable=False)

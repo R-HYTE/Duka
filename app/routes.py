@@ -6,24 +6,29 @@ import os
 from werkzeug.utils import secure_filename
 from datetime import datetime
 
+# Set of allowed file extensions for uploads
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 
+# Function to check if file extension is allowed
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
+# Route for serving uploaded files
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
 
+# Index route
 @app.route('/')
 @app.route('/index')
 def index():
     return render_template('index.html')
 
 
+# Route for managing shops
 @app.route('/my_shops', methods=['GET', 'POST'])
 def my_shops():
     # Check if the Shop table exists
@@ -32,6 +37,7 @@ def my_shops():
         Shop.__table__.create(db.engine)
 
     if request.method == 'POST':
+        # Handle adding new shop
         name = request.form.get('name')
         location = request.form.get('location')
         
@@ -45,13 +51,16 @@ def my_shops():
         
         return redirect(url_for('my_shops'))
 
+    # Fetch existing shops
     shops = Shop.query.all()
     return render_template('my_shops.html', shops=shops)
 
 
+# Route for editing shop details
 @app.route('/edit_shop', methods=['POST'])
 def edit_shop():
-    shop_name = request.form['shop_name'] # Get the shop name from the request
+    # Handle editing shop details
+    shop_name = request.form['shop_name']
     new_name = request.form['new_name']
     new_location = request.form['new_location']
     
@@ -67,9 +76,10 @@ def edit_shop():
         return jsonify(success=False, error='Shop not found'), 404
 
 
+# Route for deleting shops
 @app.route('/delete_shop', methods=['POST'])
 def delete_shop():
-    shop_name = request.form['shop_name'] # Get the shop name from the request
+    shop_name = request.form['shop_name']
     
     # Find the shop by name
     shop = Shop.query.filter_by(name=shop_name).first()
@@ -82,6 +92,7 @@ def delete_shop():
         return jsonify(success=False, error='Shop not found'), 404
 
 
+# Route for managing products
 @app.route('/products', methods=['GET', 'POST'])
 def products():
     # Check if the Product table exists
@@ -90,7 +101,7 @@ def products():
         Product.__table__.create(db.engine)
 
     if request.method == 'POST':
-        # Get form data
+        # Handle adding new product
         barcode = request.form.get('barcode')
         category = request.form.get('category')
         description = request.form.get('description')
@@ -135,14 +146,15 @@ def products():
         db.session.commit()
         return redirect(url_for('products'))
 
-    # Fetch products from the database
+    # Fetch existing products from the database
     products = Product.query.all()
-
     return render_template('products.html', products=products)
 
 
+# Route for fetching product details
 @app.route('/get_product_details', methods=['GET'])
 def get_product_details():
+    # Handle fetching product details
     product_id = request.args.get('id')
     if product_id:
         product = Product.query.get(product_id)
@@ -167,11 +179,11 @@ def get_product_details():
         return jsonify({'success': False, 'error': 'Product ID is required'}), 400
     
 
+# Route for deleting products
 @app.route('/delete_product', methods=['POST'])
 def delete_product():
-    product_id = request.form['product_id']  # Get the product ID from the request
-    
-    # Find the product by ID
+    # Handle deleting products
+    product_id = request.form['product_id']
     product = Product.query.get(product_id)
     if product:
         # Delete the product
@@ -182,6 +194,7 @@ def delete_product():
         return jsonify(success=False, error='Product not found'), 404
 
 
+# Route for selling products
 @app.route('/sell')
 def sell():
     # Fetch products from the database
