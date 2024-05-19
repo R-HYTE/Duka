@@ -4,6 +4,8 @@
 
 Duka is more than just a project—it's a journey. Born out of a simple yet powerful moment when my mother walked in with groceries, it sparked the idea to revolutionize the way small businesses operate. Our goal? To digitize the operations of local shops, starting with the foundational aspects of the project. For a detailed account of the journey behind Duka, check out the article on [Medium](https://medium.com/@polycarpwathuta39/the-journey-of-building-duka-93c2e2865d75).
 
+
+- **Deployed Site**: ![QR Code](./app/static/images/qr.png)
 - **Deployed Site**: [Explore Duka](https://r-hyte.github.io/Duka/)
 - **Author's LinkedIn**: [Polycarp Kanyugo](https://www.linkedin.com/in/polycarp-kanyugo)
 
