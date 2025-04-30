@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Duka is more than just a project—it's a journey. Born out of a simple yet powerful moment when my mother walked in with groceries, it sparked the idea to revolutionize the way small businesses operate. Our goal? To digitize the operations of local shops, starting with the foundational aspects of the project. For a detailed account of the journey behind Duka, check out the article on [Medium](https://medium.com/@polycarpwathuta39/the-journey-of-building-duka-93c2e2865d75).
+Our goal? To digitize the operations of local shops, starting with the foundational aspects of the project. For a detailed account of the journey behind Duka, check out the article on [Medium](https://medium.com/@polycarpwathuta39/the-journey-of-building-duka-93c2e2865d75).
 
 
 - **Deployed Site**:\
@@ -13,25 +13,23 @@ Duka is more than just a project—it's a journey. Born out of a simple yet powe
 ## Installation
 
 Getting started with Duka is a breeze:
+Open your terminal/ CLI:
 
-1. **Clone the repository**:
+1. **Pull docker image**:
    ```bash
-   git clone https://github.com/r-hyte/Duka.git
+   docker pull wathuta/duka:latest
    ```
 
-2. **Navigate to the project directory**:
+2. **Run a container from the image(above)**:
    ```bash
-   cd Duka
+   docker run --name duka -d -p 5000:5000 wathuta/duka:latest
    ```
 
-3. **Install dependencies**:
-   ```bash
-   pip install -r requirements.txt
-   ```
+To stop the container from running
 
-3. **Run the application**:
+**Install dependencies**:
    ```bash
-   python run.py
+   docker stop duka
    ```
 
 ## Contributing
