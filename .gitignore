@@ -1,7 +1,2 @@
-# Files to ignore
-
-# Ignore pycache files
-*.pyc
-
-# Ignore files uploaded
-# uploads/
+__pycache__/
+.venv/
