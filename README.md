@@ -27,7 +27,7 @@ Open your terminal/ CLI:
 
 To stop the container from running
 
-**Install dependencies**:
+**Stop the running app**:
    ```bash
    docker stop duka
    ```
